@@ -1,0 +1,23 @@
+data "azurerm_resource_group" "rg" {
+  name = "sneo-rg"
+}
+
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = var.cluster_name
+  kubernetes_version  = var.kubernetes_version
+  location            = data.azurerm_resource_group.rg.location
+  resource_group_name = data.azurerm_resource_group.rg.name
+  dns_prefix          = var.cluster_name
+  node_resource_group = var.node_resource_group
+
+  default_node_pool {
+    name                = "system"
+    node_count          = var.system_node_count
+    vm_size             = "Standard_DS2_v2"
+    type                = "VirtualMachineScaleSets"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
