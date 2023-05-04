@@ -9,11 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-     run:
-      # We keep Terraform files in the terraform directory.
-        working-directory: ./Terraform
-  
+    
     
     steps:
     - name: Checkout
