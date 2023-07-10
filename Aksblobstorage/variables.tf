@@ -1,6 +1,6 @@
 variable "cluster_name" {
   type        = string
-  default     = "sneoaks"
+  default     = "backstageaks"
   description = "AKS name in Azure"
 }
 
@@ -18,6 +18,6 @@ variable "system_node_count" {
 
 variable "node_resource_group" {
   type        = string
-  default     = "sneonoderg"
+  default     = "backstagenoderg"
   description = "RG name for cluster resources in Azure"
 }
