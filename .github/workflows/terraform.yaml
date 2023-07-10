@@ -65,11 +65,12 @@ jobs:
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1   
-      
-    - uses: azure/login@v1
+   
+    - uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}  
-      
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+        allow-no-subscriptions: true
+ 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
