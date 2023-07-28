@@ -18,3 +18,18 @@ provider "azurerm" {
 resource_group {
   prevent_deletion_if_contains_resources = true
    }
+
+variable "vm_name" {
+  description = "list vm names"
+  type = list(string)
+}
+
+resource "azurerm_virtual_machine" "vm" {
+
+provisioner "remote-exec" {
+inline = [
+  "sudo apt-get update",
+  "sudo apt-get install -y software-package",
+]
+}
+}
