@@ -3,3 +3,18 @@ prevent_destroy = true
 create_before_destroy = true
 ignore_changes = [tags]
 }
+
+# multiple identical azure virtual network
+resource "azurerm_virtual_network" "vnet" {
+count = 3
+}
+
+tags {
+ Environment = Development
+}
+provider "azurerm" {
+   features {
+
+resource_group {
+  prevent_deletion_if_contains_resources = true
+   }
