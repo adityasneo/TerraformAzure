@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "rg" {
-  name = "backstage"
+  name = "rg_sb_eastus_152296_1_169433730279"
 }
 
 # Create virtual network
